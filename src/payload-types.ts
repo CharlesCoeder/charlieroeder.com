@@ -72,6 +72,8 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    trees: Tree;
+    'tree-segments': TreeSegment;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -88,6 +90,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    trees: TreesSelect<false> | TreesSelect<true>;
+    'tree-segments': TreeSegmentsSelect<false> | TreeSegmentsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -745,6 +749,85 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "trees".
+ */
+export interface Tree {
+  id: number;
+  /**
+   * Display name for the tree (e.g., "Coding", "Meditation")
+   */
+  name: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  /**
+   * Brief description of this growth area
+   */
+  description?: string | null;
+  /**
+   * Icon identifier (emoji like 💻 or icon name)
+   */
+  icon?: string | null;
+  /**
+   * Display order on growth page (lower numbers first)
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tree-segments".
+ */
+export interface TreeSegment {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  /**
+   * Which growth tree this segment belongs to
+   */
+  tree: number | Tree;
+  /**
+   * Parent segment within the same tree. Leave empty for root-level segments.
+   */
+  parent?: (number | null) | TreeSegment;
+  /**
+   * Sort order among siblings (lower numbers first)
+   */
+  order?: number | null;
+  /**
+   * Brief description displayed in the tree visualization
+   */
+  description?: string | null;
+  /**
+   * Full rich text content for this segment
+   */
+  details?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -935,6 +1018,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'trees';
+        value: number | Tree;
+      } | null)
+    | ({
+        relationTo: 'tree-segments';
+        value: number | TreeSegment;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1299,6 +1390,36 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "trees_select".
+ */
+export interface TreesSelect<T extends boolean = true> {
+  name?: T;
+  generateSlug?: T;
+  slug?: T;
+  description?: T;
+  icon?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tree-segments_select".
+ */
+export interface TreeSegmentsSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  tree?: T;
+  parent?: T;
+  order?: T;
+  description?: T;
+  details?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
