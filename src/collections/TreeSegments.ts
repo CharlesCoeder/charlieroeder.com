@@ -51,14 +51,24 @@ export const TreeSegments: CollectionConfig = {
       admin: {
         description: 'Parent segment within the same tree. Leave empty for root-level segments.',
       },
-      filterOptions: ({ data }) => {
+      filterOptions: ({ data, id }) => {
         // Only show segments from the same tree as potential parents
+        // AND exclude the current segment from being its own parent
         if (data?.tree) {
-          return {
+          const filter: any = {
             tree: {
               equals: data.tree,
             },
           }
+
+          // Exclude current segment (prevents circular reference)
+          if (id) {
+            filter.id = {
+              not_equals: id,
+            }
+          }
+
+          return filter
         }
         // Return false to show no options when tree is not selected
         return false
