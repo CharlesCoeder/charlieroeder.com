@@ -92,10 +92,14 @@ const config = {
         success: 'hsl(var(--success))',
         error: 'hsl(var(--error))',
         warning: 'hsl(var(--warning))',
+        'accent-blog': '#1E5EF9',
+        'accent-growth': '#2C7828',
       },
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
+        lato: ['var(--font-lato)', 'sans-serif'],
+        lora: ['var(--font-lora)', 'serif'],
       },
       keyframes: {
         'accordion-down': {
