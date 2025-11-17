@@ -153,7 +153,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'homeHero';
     richText?: {
       root: {
         type: string;
@@ -194,8 +194,23 @@ export interface Page {
         }[]
       | null;
     media?: (number | null) | Media;
+    /**
+     * Main greeting ("hello! I'm Charlie, welcome to my website!")
+     */
+    greetingText?: string | null;
+    /**
+     * preceding text ("right now, I'm working on")
+     */
+    currentProjectLabel?: string | null;
+    /**
+     * what you are currently working on!
+     */
+    projectName?: string | null;
+    bioParagraph1?: string | null;
+    bioParagraph2?: string | null;
+    bioParagraph3?: string | null;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | RecentPostsBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -749,6 +764,17 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RecentPostsBlock".
+ */
+export interface RecentPostsBlock {
+  title: string;
+  limit: number;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'recentPosts';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "trees".
  */
 export interface Tree {
@@ -1116,6 +1142,12 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         media?: T;
+        greetingText?: T;
+        currentProjectLabel?: T;
+        projectName?: T;
+        bioParagraph1?: T;
+        bioParagraph2?: T;
+        bioParagraph3?: T;
       };
   layout?:
     | T
@@ -1125,6 +1157,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        recentPosts?: T | RecentPostsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1221,6 +1254,16 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RecentPostsBlock_select".
+ */
+export interface RecentPostsBlockSelect<T extends boolean = true> {
+  title?: T;
+  limit?: T;
   id?: T;
   blockName?: T;
 }

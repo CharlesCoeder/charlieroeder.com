@@ -5,84 +5,27 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
   slug: 'home',
   _status: 'published',
   hero: {
-    type: 'lowImpact',
-    richText: {
-      root: {
-        type: 'root',
-        children: [
-          {
-            type: 'heading',
-            children: [
-              {
-                type: 'text',
-                detail: 0,
-                format: 0,
-                mode: 'normal',
-                style: '',
-                text: 'Payload Website Template',
-                version: 1,
-              },
-            ],
-            direction: 'ltr',
-            format: '',
-            indent: 0,
-            tag: 'h1',
-            version: 1,
-          },
-          {
-            type: 'paragraph',
-            children: [
-              {
-                type: 'link',
-                children: [
-                  {
-                    type: 'text',
-                    detail: 0,
-                    format: 0,
-                    mode: 'normal',
-                    style: '',
-                    text: 'Visit the admin dashboard',
-                    version: 1,
-                  },
-                ],
-                direction: 'ltr',
-                fields: {
-                  linkType: 'custom',
-                  newTab: false,
-                  url: '/admin',
-                },
-                format: '',
-                indent: 0,
-                version: 2,
-              },
-              {
-                type: 'text',
-                detail: 0,
-                format: 0,
-                mode: 'normal',
-                style: '',
-                text: ' to make your account and seed content for your website.',
-                version: 1,
-              },
-            ],
-            direction: 'ltr',
-            format: '',
-            indent: 0,
-            textFormat: 0,
-            version: 1,
-          },
-        ],
-        direction: 'ltr',
-        format: '',
-        indent: 0,
-        version: 1,
-      },
-    },
+    type: 'homeHero',
+    greetingText: "hello! I'm Charlie, welcome to my website!",
+    currentProjectLabel: "right now, I'm working on",
+    projectName: 'River Journal',
+    bioParagraph1:
+      "on the day to day, I'm assistant general manager at a large-scale NYC housing property.",
+    bioParagraph2:
+      "under the hood, I'm a mega nerd who loves coding and creating cool things using technology.",
+    bioParagraph3:
+      'this website is a collection of my thoughts and growth, please flow around and enjoy!',
   },
   meta: {
-    description: 'An open-source website built with Payload and Next.js.',
-    title: 'Payload Website Template',
+    description: 'Welcome to my website! A collection of my thoughts and growth.',
+    title: 'Charlie Roeder - Welcome',
   },
   title: 'Home',
-  layout: [],
+  layout: [
+    {
+      blockType: 'recentPosts',
+      title: 'Posts',
+      limit: 3,
+    },
+  ],
 }

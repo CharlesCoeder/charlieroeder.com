@@ -35,6 +35,10 @@ export const hero: Field = {
           label: 'Low Impact',
           value: 'lowImpact',
         },
+        {
+          label: 'Home Hero',
+          value: 'homeHero',
+        },
       ],
       required: true,
     },
@@ -66,6 +70,58 @@ export const hero: Field = {
       },
       relationTo: 'media',
       required: true,
+    },
+    // Home Hero specific fields
+    {
+      name: 'greetingText',
+      type: 'text',
+      label: 'Greeting Text',
+      admin: {
+        condition: (_, { type } = {}) => type === 'homeHero',
+        description: 'Main greeting ("hello! I\'m Charlie, welcome to my website!")',
+      },
+    },
+    {
+      name: 'currentProjectLabel',
+      type: 'text',
+      label: 'Current Project Label',
+      admin: {
+        condition: (_, { type } = {}) => type === 'homeHero',
+        description: 'preceding text ("right now, I\'m working on")',
+      },
+    },
+    {
+      name: 'projectName',
+      type: 'text',
+      label: 'Project Name',
+      admin: {
+        condition: (_, { type } = {}) => type === 'homeHero',
+        description: 'what you are currently working on!',
+      },
+    },
+    {
+      name: 'bioParagraph1',
+      type: 'textarea',
+      label: 'Bio Paragraph 1',
+      admin: {
+        condition: (_, { type } = {}) => type === 'homeHero',
+      },
+    },
+    {
+      name: 'bioParagraph2',
+      type: 'textarea',
+      label: 'Bio Paragraph 2',
+      admin: {
+        condition: (_, { type } = {}) => type === 'homeHero',
+      },
+    },
+    {
+      name: 'bioParagraph3',
+      type: 'textarea',
+      label: 'Bio Paragraph 3',
+      admin: {
+        condition: (_, { type } = {}) => type === 'homeHero',
+      },
     },
   ],
   label: false,
