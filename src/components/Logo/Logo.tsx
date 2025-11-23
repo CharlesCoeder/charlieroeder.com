@@ -24,7 +24,7 @@ export const Logo = (props: Props) => {
         fetchPriority={priority}
         decoding="async"
         className={clsx('max-w-[9.375rem] w-full h-[34px] dark:hidden', className)}
-        src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-logo-dark.svg"
+        src="/logo.svg"
       />
       <img
         alt="Payload Logo"
@@ -33,8 +33,11 @@ export const Logo = (props: Props) => {
         loading={loading}
         fetchPriority={priority}
         decoding="async"
-        className={clsx('max-w-[9.375rem] w-full h-[34px] hidden dark:block', className)}
-        src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-logo-light.svg"
+        className={clsx(
+          'max-w-[9.375rem] w-full h-[34px] hidden dark:block dark:invert',
+          className,
+        )}
+        src="/logo.svg"
       />
     </>
   )
