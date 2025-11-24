@@ -3,6 +3,7 @@ import { useHeaderTheme } from '@/providers/HeaderTheme'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 
 import type { Header } from '@/payload-types'
 
@@ -30,12 +31,16 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   return (
-    <header className="container relative z-20 border-b border-foreground/10" {...(theme ? { 'data-theme': theme } : {})}>
+    <header className="container relative z-20" {...(theme ? { 'data-theme': theme } : {})}>
       <div className="py-6 flex justify-between">
         <Link href="/">
-          <Logo loading="eager" priority="high" className="invert dark:invert-0" />
+          {/* if i want to add a logo, uncomment below: */}
+          {/* <Logo loading="eager" priority="high" className="invert dark:invert-0" /> */}
         </Link>
-        <HeaderNav data={data} />
+        <div className="flex items-center gap-4">
+          <HeaderNav data={data} />
+          <ThemeSelector />
+        </div>
       </div>
     </header>
   )

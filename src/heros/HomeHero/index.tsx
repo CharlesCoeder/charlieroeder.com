@@ -15,7 +15,7 @@ export const HomeHero: React.FC<Page['hero']> = ({
       <div className="absolute left-0 top-[-100px] w-[400px] h-[400px] opacity-80 pointer-events-none">
         <svg viewBox="0 0 400 400" className="w-full h-full">
           {/* Stylized leaf branches - simplified botanical illustration */}
-          <g stroke="currentColor" fill="none" strokeWidth="2" className="text-black/70">
+          <g stroke="currentColor" fill="none" strokeWidth="2" className="text-foreground/70">
             {/* Main stems */}
             <path d="M50,400 Q80,350 100,300 T120,200 T130,100 T135,50" strokeWidth="3" />
             <path d="M50,400 Q70,360 85,320 T95,240 T100,160" strokeWidth="2.5" />
@@ -43,10 +43,10 @@ export const HomeHero: React.FC<Page['hero']> = ({
       </div>
 
       {/* Main content container */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-8 pt-32">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-8 pt-16">
         {/* Hero section */}
         <div className="text-center mb-8">
-          <h1 className="font-lora text-[28px] text-black mb-6">
+          <h1 className="font-lora text-[28px] text-foreground mb-6">
             {greetingText || "hello! I'm Charlie, welcome to my website!"}
           </h1>
 
@@ -54,7 +54,7 @@ export const HomeHero: React.FC<Page['hero']> = ({
           {(currentProjectLabel || projectName) && (
             <div className="inline-block">
               <div className="relative px-4 py-2 border-2 border-black/80 bg-white/50">
-                <p className="font-lora text-[20px] text-black">
+                <p className="font-lora text-[20px] text-foreground">
                   {currentProjectLabel || "right now, I'm working on"}{' '}
                   <span className="font-bold">{projectName || 'River Journal'}</span>
                 </p>
@@ -66,13 +66,13 @@ export const HomeHero: React.FC<Page['hero']> = ({
         {/* Bio paragraphs */}
         <div className="max-w-[856px] mx-auto text-center mb-32">
           {bioParagraph1 && (
-            <p className="font-lora text-[20px] text-black mb-4">{bioParagraph1}</p>
+            <p className="font-lora text-[20px] text-foreground mb-4">{bioParagraph1}</p>
           )}
           {bioParagraph2 && (
-            <p className="font-lora text-[20px] text-black mb-4">{bioParagraph2}</p>
+            <p className="font-lora text-[20px] text-foreground mb-4">{bioParagraph2}</p>
           )}
           {bioParagraph3 && (
-            <p className="font-lora text-[20px] text-black mt-8">{bioParagraph3}</p>
+            <p className="font-lora text-[20px] text-foreground mt-8">{bioParagraph3}</p>
           )}
         </div>
       </div>

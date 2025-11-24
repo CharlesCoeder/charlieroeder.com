@@ -22,7 +22,7 @@ export default async function HomePage() {
   const { hero, layout } = page
 
   return (
-    <main className="min-h-screen bg-[#fffcf0]">
+    <main className="min-h-screen bg-background">
       <PageClient />
       <PayloadRedirects disableNotFound url="/" />
 

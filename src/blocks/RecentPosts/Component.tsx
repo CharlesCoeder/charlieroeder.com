@@ -35,12 +35,12 @@ export const RecentPostsBlock: React.FC<RecentPostsBlockType> = async ({ title, 
               <div key={post.id} className="border-b border-black/10 pb-4 last:border-b-0">
                 <Link
                   href={`/posts/${post.slug}`}
-                  className="font-lora text-[20px] text-black hover:text-black/70 transition-colors"
+                  className="font-lora text-[20px] text-foreground hover:text-foreground/70 transition-colors"
                 >
                   {post.title}
                 </Link>
                 {post.meta?.description && (
-                  <p className="font-lora text-[16px] text-black/60 mt-2">
+                  <p className="font-lora text-[16px] text-foreground/60 mt-2">
                     {post.meta.description}
                   </p>
                 )}
@@ -48,7 +48,7 @@ export const RecentPostsBlock: React.FC<RecentPostsBlockType> = async ({ title, 
             ))}
           </div>
         ) : (
-          <p className="font-lora text-[18px] text-black/60">No posts yet. Check back soon!</p>
+          <p className="font-lora text-[18px] text-foreground/60">No posts yet. Check back soon!</p>
         )}
       </div>
     </div>
