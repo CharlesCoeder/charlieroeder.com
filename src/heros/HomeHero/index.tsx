@@ -12,16 +12,16 @@ export const HomeHero: React.FC<Page['hero']> = ({
   return (
     <div className="relative">
       {/* Decorative leaves illustration */}
-      <div className="absolute left-[-94px] top-[-250px] w-[655px] h-[717px] flex items-center justify-center opacity-80 pointer-events-none">
-        <div className="flex-none rotate-[4.511deg]">
-          <div className="relative w-[604px] h-[672px]">
+      <div className="hidden sm:flex absolute left-[-4vw] top-[-12vw] w-[35vw] max-w-[650px] min-w-[220px] h-auto items-center justify-center opacity-80 pointer-events-none max-[800px]:top-[calc(-204px+13.5vw)] max-[800px]:left-[calc(-68px+4.5vw)]">
+        <div className="flex-none rotate-[4.511deg] w-full">
+          <div className="relative w-full aspect-[300/330]">
             <img src="/leaves.svg" alt="" className="w-full h-full object-cover object-center" />
           </div>
         </div>
       </div>
 
       {/* Main content container */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-8 pt-16">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-8 sm:pt-16">
         {/* Hero section */}
         <div className="text-center mb-8">
           <h1 className="font-lora text-[28px] text-foreground mb-6">
