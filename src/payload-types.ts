@@ -236,6 +236,10 @@ export interface Page {
 export interface Post {
   id: number;
   title: string;
+  /**
+   * Minimal: Simple inline header. Featured: Full hero image with overlay.
+   */
+  heroStyle?: ('minimal' | 'featured') | null;
   heroImage?: (number | null) | Media;
   content: {
     root: {
@@ -1273,6 +1277,7 @@ export interface RecentPostsBlockSelect<T extends boolean = true> {
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
+  heroStyle?: T;
   heroImage?: T;
   content?: T;
   relatedPosts?: T;

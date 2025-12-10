@@ -72,6 +72,19 @@ export const Posts: CollectionConfig<'posts'> = {
       required: true,
     },
     {
+      name: 'heroStyle',
+      type: 'select',
+      defaultValue: 'minimal',
+      options: [
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Featured', value: 'featured' },
+      ],
+      admin: {
+        position: 'sidebar',
+        description: 'Minimal: Simple inline header. Featured: Full hero image with overlay.',
+      },
+    },
+    {
       type: 'tabs',
       tabs: [
         {
@@ -80,6 +93,9 @@ export const Posts: CollectionConfig<'posts'> = {
               name: 'heroImage',
               type: 'upload',
               relationTo: 'media',
+              admin: {
+                condition: (data) => data?.heroStyle === 'featured',
+              },
             },
             {
               name: 'content',

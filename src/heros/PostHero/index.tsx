@@ -9,13 +9,39 @@ import { formatAuthors } from '@/utilities/formatAuthors'
 export const PostHero: React.FC<{
   post: Post
 }> = ({ post }) => {
-  const { categories, heroImage, populatedAuthors, publishedAt, title } = post
+  const { categories, heroImage, heroStyle, populatedAuthors, publishedAt, title } = post
 
   const hasAuthors =
     populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== ''
 
   const hasHeroImage = heroImage && typeof heroImage !== 'string'
 
+  const isFeaturedStyle = heroStyle === 'featured' || (heroStyle !== 'minimal' && hasHeroImage)
+
+  // Minimal hero style - simple inline header
+  if (!isFeaturedStyle) {
+    return (
+      <div className="container pt-8 pb-6">
+        <div className="lg:grid lg:grid-cols-[1fr_40rem_1fr]">
+          <div className="col-start-1 col-span-1 md:col-start-2 md:col-span-2">
+            <h1 className="mb-3 text-3xl md:text-4xl font-normal">{title}</h1>
+
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm text-muted-foreground">
+              {publishedAt && <time dateTime={publishedAt}>{formatDateTime(publishedAt)}</time>}
+              {hasAuthors && (
+                <div className="flex items-center gap-1.5">
+                  <span>by</span>
+                  <span>{formatAuthors(populatedAuthors)}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Featured hero style - full-bleed image with overlay
   return (
     <div className="relative -mt-[10.4rem] flex items-end">
       <div
