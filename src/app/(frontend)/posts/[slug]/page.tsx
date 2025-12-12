@@ -49,9 +49,13 @@ export default async function Post({ params: paramsPromise }: Args) {
 
   if (!post) return <PayloadRedirects url={url} />
 
+  const hasHeroImage = !!(post.heroImage && typeof post.heroImage !== 'string')
+  const isFeaturedStyle =
+    post.heroStyle === 'featured' || (post.heroStyle !== 'minimal' && hasHeroImage)
+
   return (
     <article className="pb-16">
-      <PageClient />
+      <PageClient useDarkHeader={isFeaturedStyle && hasHeroImage} />
 
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
