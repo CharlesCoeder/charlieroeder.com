@@ -48,7 +48,7 @@ export const Posts: CollectionConfig<'posts'> = {
     },
   },
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ['title', 'postType', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) =>
         generatePreviewPath({
@@ -82,6 +82,20 @@ export const Posts: CollectionConfig<'posts'> = {
       admin: {
         position: 'sidebar',
         description: 'Minimal: Simple inline header. Featured: Full hero image with overlay.',
+      },
+    },
+    {
+      name: 'postType',
+      type: 'select',
+      defaultValue: 'post',
+      required: true,
+      options: [
+        { label: 'Post', value: 'post' },
+        { label: 'Stream', value: 'stream' },
+      ],
+      admin: {
+        position: 'sidebar',
+        description: 'Posts are thoughtful, effortful content. Streams are quick thoughts.',
       },
     },
     {

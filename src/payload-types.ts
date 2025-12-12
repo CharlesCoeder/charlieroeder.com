@@ -210,7 +210,15 @@ export interface Page {
     bioParagraph2?: string | null;
     bioParagraph3?: string | null;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | RecentPostsBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | RecentPostsBlock
+    | RecentContentGridBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -240,6 +248,10 @@ export interface Post {
    * Minimal: Simple inline header. Featured: Full hero image with overlay.
    */
   heroStyle?: ('minimal' | 'featured') | null;
+  /**
+   * Posts are thoughtful, effortful content. Streams are quick thoughts.
+   */
+  postType: 'post' | 'stream';
   heroImage?: (number | null) | Media;
   content: {
     root: {
@@ -779,6 +791,19 @@ export interface RecentPostsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RecentContentGridBlock".
+ */
+export interface RecentContentGridBlock {
+  postsTitle: string;
+  streamsTitle: string;
+  postsLimit: number;
+  streamsLimit: number;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'recentContentGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "trees".
  */
 export interface Tree {
@@ -1162,6 +1187,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         recentPosts?: T | RecentPostsBlockSelect<T>;
+        recentContentGrid?: T | RecentContentGridBlockSelect<T>;
       };
   meta?:
     | T
@@ -1273,11 +1299,24 @@ export interface RecentPostsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RecentContentGridBlock_select".
+ */
+export interface RecentContentGridBlockSelect<T extends boolean = true> {
+  postsTitle?: T;
+  streamsTitle?: T;
+  postsLimit?: T;
+  streamsLimit?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
   heroStyle?: T;
+  postType?: T;
   heroImage?: T;
   content?: T;
   relatedPosts?: T;
