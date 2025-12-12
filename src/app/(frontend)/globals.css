@@ -101,3 +101,15 @@ html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
+
+/* SVG color masking to use foreground color */
+.svg-foreground-mask {
+  /* In light mode, keep the original black color */
+  filter: none;
+}
+
+[data-theme='dark'] .svg-foreground-mask {
+  /* In dark mode, use the foreground color via mask */
+  filter: brightness(0) saturate(100%) invert(89%) sepia(16%) saturate(338%) hue-rotate(332deg)
+    brightness(111%) contrast(98%);
+}

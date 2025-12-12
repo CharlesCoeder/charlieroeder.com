@@ -15,7 +15,11 @@ export const HomeHero: React.FC<Page['hero']> = ({
       <div className="hidden sm:flex absolute left-[-4vw] top-[-12vw] w-[35vw] max-w-[650px] min-w-[220px] h-auto items-center justify-center opacity-80 pointer-events-none max-[800px]:top-[calc(-204px+13.5vw)] max-[800px]:left-[calc(-68px+4.5vw)]">
         <div className="flex-none rotate-[4.511deg] w-full">
           <div className="relative w-full aspect-[300/330]">
-            <img src="/leaves.svg" alt="" className="w-full h-full object-cover object-center" />
+            <img
+              src="/leaves.svg"
+              alt=""
+              className="w-full h-full object-cover object-center svg-foreground-mask"
+            />
           </div>
         </div>
       </div>
@@ -31,7 +35,7 @@ export const HomeHero: React.FC<Page['hero']> = ({
           {/* Current project callout */}
           {(currentProjectLabel || projectName) && (
             <div className="inline-block">
-              <div className="relative px-4 py-2 border-2 border-black/80 bg-white/50">
+              <div className="relative px-4 py-2 border-2 border-foreground/80 bg-background/50">
                 <p className="font-lora text-[20px] text-foreground">
                   {currentProjectLabel || "right now, I'm working on"}{' '}
                   <span className="font-bold">{projectName || 'River Journal'}</span>
